@@ -1,9 +1,9 @@
 import requests
 
-client_id = '1124403628508610'
-client_secret = '1798ff2c12579c7781b3d689255fb036'
-redirect_url = 'https://ritik1009.github.io'
-access_url = 'https://www.facebook.com/v13.0/dialog/oauth?response_type=token&display=popup&client_id=1124403628508610&redirect_uri=https://ritik1009.github.io&auth_type=rerequest&scope=user_location%2Cuser_photos%2Cuser_friends%2Cuser_gender%2Cpages_show_list%2Cinstagram_basic%2Cinstagram_manage_comments%2Cinstagram_manage_insights%2Cpages_read_engagement%2Cpublic_profile'
+client_id = 'Your_client_id'
+client_secret = 'Your_client_secret'
+redirect_url = 'your redierect_uri'
+access_url = 'https://www.facebook.com/v13.0/dialog/oauth?response_type=token&display=popup&client_id=your_client_id&redirect_uri=your_redirect_uri&auth_type=rerequest&scope=user_location%2Cuser_photos%2Cuser_friends%2Cuser_gender%2Cpages_show_list%2Cinstagram_basic%2Cinstagram_manage_comments%2Cinstagram_manage_insights%2Cpages_read_engagement%2Cpublic_profile'
 graph_url = 'https://graph.facebook.com/v15.0/'
 
 def func_get_url():
