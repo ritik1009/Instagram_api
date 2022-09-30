@@ -1,9 +1,10 @@
 import requests
+from insights import get_user_insights,get_post_insights
 
-client_id = 'Your_client_id'
-client_secret = 'Your_client_secret'
-redirect_url = 'your redierect_uri'
-access_url = 'https://www.facebook.com/v13.0/dialog/oauth?response_type=token&display=popup&client_id=your_client_id&redirect_uri=your_redirect_uri&auth_type=rerequest&scope=user_location%2Cuser_photos%2Cuser_friends%2Cuser_gender%2Cpages_show_list%2Cinstagram_basic%2Cinstagram_manage_comments%2Cinstagram_manage_insights%2Cpages_read_engagement%2Cpublic_profile'
+client_id = '1124403628508610'
+client_secret = '1798ff2c12579c7781b3d689255fb036'
+redirect_url = 'https://ritik1009.github.io'
+access_url = 'https://www.facebook.com/v13.0/dialog/oauth?response_type=token&display=popup&client_id=1124403628508610&redirect_uri=https://ritik1009.github.io&auth_type=rerequest&scope=user_location%2Cuser_photos%2Cuser_friends%2Cuser_gender%2Cpages_show_list%2Cinstagram_basic%2Cinstagram_manage_comments%2Cinstagram_manage_insights%2Cpages_read_engagement%2Cpublic_profile'
 graph_url = 'https://graph.facebook.com/v15.0/'
 
 def func_get_url():
@@ -35,7 +36,7 @@ def func_get_page_id(access_token = ''):
     print("\n response", response)
     response = response.json()
     print("\n response", response)
-    page_id = ['data'][0]['id']
+    page_id = response['data'][0]['id']
     print("\n page_id",page_id)
     return page_id
 
@@ -107,3 +108,9 @@ long_lived_access_token = func_get_long_lived_access_token(access_token=access_c
 page_id =func_get_page_id(access_token=long_lived_access_token)
 insta_id = func_get_instagram_business_account(page_id=page_id,access_token=long_lived_access_token)
 post_data = func_get_media_id(instagram_account_id= insta_id,access_token=long_lived_access_token)
+
+
+user_insights = get_user_insights(access_token=long_lived_access_token, api_url=graph_url,
+                                  ig_user_id=insta_id, period='day', metric='follower_count', since='', until='')
+
+post_insights = get_post_insights(access_token=long_lived_access_token, api_url=graph_url, instagram_account_id=insta_id)
