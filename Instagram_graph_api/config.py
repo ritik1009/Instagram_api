@@ -1,0 +1,6 @@
+client_id = ''
+client_secret = ''
+access_token = ''
+redirect_url = ''
+access_url = ''
+graph_url = 'https://graph.facebook.com/v15.0/'
