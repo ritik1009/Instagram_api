@@ -4,7 +4,7 @@ from insights import get_user_insights,get_post_insights
 client_id = ''
 client_secret = ''
 redirect_url = 'https://ritik1009.github.io'
-access_url = 'https://www.facebook.com/v13.0/dialog/oauth?response_type=token&display=popup&client_id=1&redirect_uri=https://ritik1009.github.io&auth_type=rerequest&scope=user_location%2Cuser_photos%2Cuser_friends%2Cuser_gender%2Cpages_show_list%2Cinstagram_basic%2Cinstagram_manage_comments%2Cinstagram_manage_insights%2Cpages_read_engagement%2Cpublic_profile'
+access_url = ''
 graph_url = 'https://graph.facebook.com/v15.0/'
 
 def func_get_url():
@@ -73,10 +73,11 @@ def func_get_media_id(instagram_account_id = '',access_token = ''):
     response = requests.get(url =url,params = param)
     response = response.json()
     media = []
-    for i in response['data']:
-        media_data = get_post_data(media_id =i['id'],access_token=access_token)
-        media.append(media_data)
-    return media
+    #for i in response['data']:
+    #    media_data = get_post_data(media_id =i['id'],access_token=access_token)
+    #    media.append(media_data)
+    #print("\n medeia_data",media)
+    return response
 
 def get_post_data(media_id='',access_token=''):
     url = graph_url + media_id
@@ -101,16 +102,3 @@ def func_get_long_lived_access_token(access_token = ''):
     long_lived_access_tokken = response['access_token']
     return long_lived_access_tokken
 
-access_code = func_get_url()
-#print(get_access_token(access_code=access_code))
-long_lived_access_token = func_get_long_lived_access_token(access_token=access_code)
-
-page_id =func_get_page_id(access_token=long_lived_access_token)
-insta_id = func_get_instagram_business_account(page_id=page_id,access_token=long_lived_access_token)
-post_data = func_get_media_id(instagram_account_id= insta_id,access_token=long_lived_access_token)
-
-
-user_insights = get_user_insights(access_token=long_lived_access_token, api_url=graph_url,
-                                  ig_user_id=insta_id, period='day', metric='follower_count', since='', until='')
-
-post_insights = get_post_insights(access_token=long_lived_access_token, api_url=graph_url, instagram_account_id=insta_id)
